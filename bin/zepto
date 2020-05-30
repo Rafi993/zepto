@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+require "zepto"
+
+default_config = {
+  "ignore": [],
+  "images": "_images",
+  "layout": "_layout",
+  "styles": "_styles",
+  "javascript": "_javascript",
+  "offline": true,
+}
+
+config = default_config
+config_file_path = "zepto.json"
+
+# Read user config file if present and merge it with default config
+if File.file?(config_file_path)
+  config_file = File.open(config_file_path)
+  user_config = JSON.load config_file
+  config = config.merge(Hash[user_config.map { |k, v| [k.to_sym, v] }])
+end
+
+case ARGV[0]
+when "serve"
+  Zepto.new(config).serve
+when "build"
+  Zepto.new(config).build
+when "help"
+  puts %(
+     zepto serve: To serve the files locally in dev mode
+     zepto build: Building for production
+     zepto help: Help options
+
+     For more details visit https://github.com/Rafi993/zepto
+    )
+else
+  puts "I don't understand the command. Try running 'zepto help'"
+end
