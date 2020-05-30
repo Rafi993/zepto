@@ -12,7 +12,7 @@ class Zepto
     @javascript = config[:javascript]
     @offline = config[:offline]
     @content = {}
-    # Storing templates so that increment builds can be performed later
+    # Storing templates so that caching builds
     @templates = {}
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true,
                                                                  strikethrough: true, highlight: true,
