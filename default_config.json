@@ -1,0 +1,8 @@
+{
+  "folders": [],
+  "ignore": ["README.md"],
+  "images": "_images",
+  "layout": "_layout",
+  "offline": true,
+  "root": "index.md"
+}
