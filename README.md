@@ -29,6 +29,12 @@ $ zepto build
 
 By default zepto will look for 
 
+## For building locally
+```
+$ gem build zepto
+$ gem install ./zepto-VERISON.gem
+```
+
 ## Customization
 
 You can customize zepto using **zepto.json** in project root
