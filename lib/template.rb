@@ -11,13 +11,12 @@ class Template
   end
 
   def render
-    puts @title
     renderer = ERB.new(@template)
     @html = renderer.result(binding)
   end
 
   def write
-    view_path = Pathname("dist" + @path.delete_prefix('"').delete_suffix('/"') + ".html")
+    view_path = Pathname("dist/" + @path.delete_prefix('"').delete_suffix('/"') + ".html")
     view_path.dirname.mkpath
     view_path.write(@html)
   end

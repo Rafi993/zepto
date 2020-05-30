@@ -14,6 +14,7 @@ class Zepto
     @content = {}
     # Storing templates so that caching builds
     @templates = {}
+    @styles_content = {}
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true,
                                                                  strikethrough: true, highlight: true,
                                                                  superscript: true)
@@ -27,13 +28,14 @@ class Zepto
     end
   end
 
+  # TODO: Move Parse to seperate Class
   # Extracts content and header from markdown and converts markdown to HTML
-  def parse(path)
+  def parse_markdown(path)
     file_content = read path
 
     header = file_content.match(/-{3,}(.+)-{3,}/m)
     post = {}
-    post[:path] = path
+    post[:path] = path.sub("content/", "").sub(".md", "")
 
     if header
       header_data = header.captures[0].split("\n").reject! { |s| s.nil? || s.strip.empty? }
@@ -48,21 +50,35 @@ class Zepto
     return post
   end
 
-  def walk()
+  def parse_css(path)
+    file_content = read path
+    return file_content
+  end
+
+  # TODO: Move Walk to seperate class
+  def walk_content()
     for file in Dir["content/**/*.md"]
-      @content[file.sub("content/", "").sub(".md", "").to_sym] = parse(file)
+      @content[file.sub("content/", "").sub(".md", "").to_sym] = parse_markdown(file)
+    end
+  end
+
+  def walk_styles()
+    for file in Dir[@styles + "/**/*.css"]
+      @styles_content[file.sub(@styles + "/", "").sub(".css", "").to_sym] = parse_css(file)
     end
   end
 
   def serve
     puts "Starting server in port 3000"
-    walk
+    walk_content
   end
 
   def build
     puts "Building static files"
-    walk
+    walk_content
+    walk_styles
 
+    # Building Layouts
     @content.each do |key, meta_data|
       layout = (meta_data[:layout]).delete_prefix('"').delete_suffix('"')
       if layout
@@ -79,6 +95,14 @@ class Zepto
       else
         raise "You have not specified any layout for #{key}"
       end
+    end
+
+    puts @styles_content
+    # Building styles
+    @styles_content.each do |key, content|
+      view_path = Pathname("dist/" + key.to_s.delete_prefix('"').delete_suffix('/"') + ".css")
+      view_path.dirname.mkpath
+      view_path.write(content)
     end
   end
 end
