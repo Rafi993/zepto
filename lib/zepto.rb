@@ -12,6 +12,8 @@ class Zepto
     @javascript = config[:javascript]
     @offline = config[:offline]
     @content = {}
+    # Storing templates so that increment builds can be performed later
+    @templates = {}
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true,
                                                                  strikethrough: true, highlight: true,
                                                                  superscript: true)
@@ -31,6 +33,7 @@ class Zepto
 
     header = file_content.match(/-{3,}(.+)-{3,}/m)
     post = {}
+    post[:path] = path
 
     if header
       header_data = header.captures[0].split("\n").reject! { |s| s.nil? || s.strip.empty? }
@@ -66,7 +69,10 @@ class Zepto
         layout_file_path = @layout + "/" + layout
         if File.file?(layout_file_path)
           template = File.read(layout_file_path)
-          Template.new(template, meta_data).render
+          path = meta_data[:path]
+          @templates[path] = Template.new(template, meta_data)
+          @templates[path].render
+          @templates[path].write
         else
           raise "File #{layout_file_path} is not found"
         end
