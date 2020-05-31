@@ -63,15 +63,26 @@ tags: ["blog", "ruby", "javascript"]
 
 Attributes specified at the page level will overwride global attribudes.
 
-1. **tags:** When you speficy a tag here the contents of the file are avaibale as a @tags in your **layout.erb** file which you
+1. **tags:** When you speficy a tag you can access blogs group by content using **get_tag** function in your **layout.erb** file which you
 can access it as follows
 
-```
+```erb
   <ul>
-    <% for | blog | in @tags.blog %>
+    <% for | blog | in get_tag("blog") %>
      <li><%=  blog.title %></li>
     <% end %>
   </ul>
 ```
+
+1. You can get list of all tags by calling **get_tags**
+   
+```erb
+  <ul>
+    <% for tag in get_tags %>
+     <li><%= tag %></li>
+    <% end %>
+  </ul>
+```
+
 1. **layout:** is used to speficy the layout file. Layout speficied here will override layout speficied global config
 1. You can include whatever additional keys here that you need. They are exposed in the **layout.erb**
