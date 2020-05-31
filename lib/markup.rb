@@ -80,6 +80,17 @@ class Markup
     end
   end
 
+  def get_path(path)
+    content_with_path = []
+    @content.each do |key, meta_data|
+      puts meta_data[:path]
+      if meta_data[:path].start_with?(path)
+        content_with_path.push(meta_data)
+      end
+    end
+    return content_with_path
+  end
+
   def compile()
     walk
     @content.each do |key, meta_data|
@@ -89,7 +100,10 @@ class Markup
         if File.file?(layout_file_path)
           template = File.read(layout_file_path)
           path = meta_data[:path]
-          @templates[path] = Template.new(template, meta_data, method(:get_tag), method(:get_tags))
+          # TODO: Need cleanup way methods are passed
+          @templates[path] = Template.new(template, meta_data, method(:get_tag),
+                                          method(:get_tags),
+                                          method(:get_path))
           @templates[path].render
           @templates[path].write
         else

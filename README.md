@@ -64,4 +64,17 @@ tags: ["blog", "ruby", "javascript"]
     </ul>
   ```
 
+4. To get all posts that belong in a particular path
+
+  ```erb
+    <ul>
+      <% for blog  in get_path("/posts") %>
+        <li>
+          <a href="<%= blog[:path].delete_suffix("/") %>.html"><%= blog[:title] %></a>
+        </li>
+      <% end %>
+    </ul>
+  ```
+
+
 4. You can include whatever additional keys here that you need. They are exposed in the **layout.erb**
