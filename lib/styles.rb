@@ -17,9 +17,13 @@ class Styles
     return file_content
   end
 
+  def minify(content)
+    return content.gsub(/\s+/, "")
+  end
+
   def walk()
     for file in Dir[@styles_path + "/**/*.css"]
-      @styles[file.sub(@styles_path + "/", "").sub(".css", "").to_sym] = parse(file)
+      @styles[file.sub(@styles_path + "/", "").sub(".css", "").to_sym] = minify(parse(file))
     end
   end
 
