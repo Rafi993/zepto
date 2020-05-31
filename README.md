@@ -37,10 +37,14 @@ You can specify the following options in it
 At the top of the page you can attributes between as follows
 
 ```
+---
 title: "Title of the page"
 date: "Date"
 layout: "blog.erb"
 tags: ["blog", "ruby", "javascript"]
+---
+
+Content of the page
 ```
 
 1. **layout:** is used to speficy the layout file
