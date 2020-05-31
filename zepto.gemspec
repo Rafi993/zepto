@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "Simple static site generator with battries included"
   s.authors = ["Rafi993"]
   s.email = "rafi993@protonmail.com"
-  s.files = ["lib/zepto.rb", "lib/template.rb", "lib/markup.rb", "lib/styles.rb"]
+  s.files = ["lib/zepto.rb", "lib/template.rb", "lib/markup.rb", "lib/styles.rb", "lib/javascript.rb"]
   s.executables << "zepto"
   s.homepage =
     "https://rubygems.org/gems/zepto"
