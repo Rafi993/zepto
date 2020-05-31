@@ -11,7 +11,6 @@ class Zepto
     @layout = config[:layout]
     @styles_path = config[:styles]
     @javascript_path = config[:javascript]
-    @offline = config[:offline]
   end
 
   def serve

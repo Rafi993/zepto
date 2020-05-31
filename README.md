@@ -48,7 +48,6 @@ You can specify the following options in **.json** in the project root
 | styles    | Location of styles      | String                                      | _styles         | false    |
 | javascript| Location of javascript  | String                                      | _javascript     | false    |
 | layout    | Location of layouts     | String                                      | _layout         | false    |
-| offline   | Add offline support     | Boolean                                     | false           | false    |
 
 ## Pagewise customization
 

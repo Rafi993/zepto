@@ -8,7 +8,6 @@ default_config = {
   "layout": "_layout",
   "styles": "_styles",
   "javascript": "_javascript",
-  "offline": true,
 }
 
 config = default_config
