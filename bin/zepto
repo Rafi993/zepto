@@ -4,7 +4,7 @@ require "zepto"
 
 default_config = {
   "ignore": [],
-  "images": "_images",
+  "assets": "_assets",
   "layout": "_layout",
   "styles": "_styles",
   "javascript": "_javascript",

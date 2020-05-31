@@ -11,7 +11,7 @@ $ gem install zepto
 ```
 
 1. Create **\_layout** for storing all layouts (with extension **.erb**)
-1. Create folder **\_images** for storing all images (when you build all images will be optimized)
+1. Create folder **\_assets** for storing all assets
 1. Place all your markdown files inside **content** folder
 1. Run
 
@@ -44,7 +44,7 @@ You can specify the following options in **.json** in the project root
 | key       | Description             | Value                                       | Default Value   | Required |
 |-----------|-------------------------|---------------------------------------------|-----------------|----------|
 | ignore    | Files/Folders to ignore | Array of file paths relative to project root| `[]`            | false    |
-| images    | Location of images      | String                                      | _images         | false    |
+| assets    | Location of assets      | String                                      | _assets         | false    |
 | styles    | Location of styles      | String                                      | _styles         | false    |
 | javascript| Location of javascript  | String                                      | _javascript     | false    |
 | layout    | Location of layouts     | String                                      | _layout         | false    |
