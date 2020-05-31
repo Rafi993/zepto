@@ -4,7 +4,6 @@ require_relative "./javascript.rb"
 
 class Zepto
   def initialize(config)
-    @ignore = config[:ignore]
     @assets_path = config[:assets]
     @layout = config[:layout]
     @styles_path = config[:styles]
