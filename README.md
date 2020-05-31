@@ -44,24 +44,24 @@ tags: ["blog", "ruby", "javascript"]
 ```
 
 1. **layout:** is used to speficy the layout file
-1. **tags:** When you speficy a tag you can access blogs group by content using **get_tag** function in your **layout.erb** file as follows
+2. **tags:** When you speficy a tag you can access blogs group by content using **get_tag** function in your **layout.erb** file as follows
+ 
+  ```erb
+    <ul>
+      <% for | blog | in get_tag("blog") %>
+      <li><%=  blog.title %></li>
+      <% end %>
+    </ul>
+  ```
 
-```erb
-  <ul>
-    <% for | blog | in get_tag("blog") %>
-     <li><%=  blog.title %></li>
-    <% end %>
-  </ul>
-```
+3. You can get list of all tags by calling **get_tags**
+    
+  ```erb
+    <ul>
+      <% for tag in get_tags %>
+      <li><%= tag %></li>
+      <% end %>
+    </ul>
+  ```
 
-1. You can get list of all tags by calling **get_tags**
-   
-```erb
-  <ul>
-    <% for tag in get_tags %>
-     <li><%= tag %></li>
-    <% end %>
-  </ul>
-```
-
-1. You can include whatever additional keys here that you need. They are exposed in the **layout.erb**
+4. You can include whatever additional keys here that you need. They are exposed in the **layout.erb**
