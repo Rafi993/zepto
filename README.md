@@ -1,5 +1,7 @@
 # zepto
 
+[![Gem Version](https://badge.fury.io/rb/zepto.svg)](https://badge.fury.io/rb/zepto)
+
 Really tiny static site generator
 
 ## Usage
