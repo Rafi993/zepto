@@ -2,8 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     execjs (2.7.0)
-    nio4r (2.5.2)
-    puma (4.3.5)
+    nio4r (2.5.8)
+    puma (4.3.11)
       nio4r (~> 2.0)
     redcarpet (3.5.0)
     uglifier (4.2.0)
@@ -13,7 +13,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  puma (~> 4.3, >= 4.3.5)
+  puma (~> 4.3)
   redcarpet (~> 3.5)
   uglifier (~> 4.2)
 
